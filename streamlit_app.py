@@ -40,9 +40,9 @@ if uploaded_file is not None:
 
   linkedin_img = img2linkedin("converted.png")
   linkedin_img.save("linkedin.png")
+  st.image(linkedin_img, use_column_width=True)
   
   with open("linkedin.png", "rb") as file:
-    st.image(file, use_column_width=True)
     btn = st.download_button(
                 label="Download image",
                 data=file,
