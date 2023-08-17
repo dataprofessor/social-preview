@@ -33,7 +33,7 @@ if uploaded_file is not None:
   svg_content = uploaded_file.read().decode("utf-8")
 
   output_buffer = BytesIO()
-  cairosvg.svg2png(bytestring=uploaded_file.getvalue(), write_to=output_buffer, , scale=5)
+  cairosvg.svg2png(bytestring=uploaded_file.getvalue(), write_to=output_buffer, scale=5)
   st.image(output_buffer.getvalue(), use_column_width=True)
   
   #cairosvg.svg2png(url=svg_content, write_to='generated-image.png', scale=5)
