@@ -1,6 +1,6 @@
 import streamlit as st
 import cairosvg
-import base64
+from io import BytesIO
 from PIL import Image
 
 st.set_page_config(page_title="🏞️ Social Preview Image Generator")
@@ -29,16 +29,19 @@ def img2linkedin(image_input):
 
 uploaded_file = st.file_uploader("Choose an Image file", type='svg')
 
-if uploaded_file:
-  b64 = base64.b64encode(uploaded_file.getvalue().encode('utf-8')).decode("utf-8")
-  html = r'<img src="data:image/svg+xml;base64,%s"/>' % b64
+if uploaded_file is not None:
+  svg_content = uploaded_file.read().decode("utf-8")
+
+  output_buffer = BytesIO()
+  cairosvg.svg2png(bytestring=uploaded_file.getvalue(), write_to=output_buffer, , scale=5)
+  st.image(output_buffer.getvalue(), use_column_width=True)
   
-  cairosvg.svg2png(url=html, write_to='generated-image.png', scale=5)
-  linkedin_img = img2linkedin("generated-image.png")
-  st.image(linkedin_img)
-  btn = st.download_button(
-            label="Download image",
-            data=linkedin_img,
-            file_name=f"{uploaded_file.name}_linkedin.png",
-            mime="image/png"
-          )
+  #cairosvg.svg2png(url=svg_content, write_to='generated-image.png', scale=5)
+  #linkedin_img = img2linkedin("generated-image.png")
+  #st.image(linkedin_img)
+  #btn = st.download_button(
+  #          label="Download image",
+  #          data=linkedin_img,
+  #          file_name=f"{uploaded_file.name}_linkedin.png",
+  #          mime="image/png"
+  #        )
