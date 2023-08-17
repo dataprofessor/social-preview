@@ -9,8 +9,7 @@ st.write('An app to generate social preview images for the [Streamlit blog](http
 
 # Convert to LinkedIn social preview image
 def img2linkedin(image_input):
-  #img = Image.open(image_input)
-  img = image_input
+  img = Image.open(image_input)
 
   # Create LinkedIn social preview image (1.91:1 aspect ratio)
   original_height = img.size[1]
@@ -35,10 +34,12 @@ if uploaded_file is not None:
 
   output_buffer = BytesIO()
   cairosvg.svg2png(bytestring=uploaded_file.getvalue(), write_to=output_buffer, scale=5)
-  st.image(output_buffer.getvalue(), use_column_width=True)
-  
-  linkedin_img = img2linkedin(output_buffer.getvalue())
 
+  output_buffer.getvalue().save("converted.png")
+
+  linkedin_img = img2linkedin("converted.png")
+  st.image(linkedin_img, use_column_width=True)
+  
   btn = st.download_button(
             label="Download image",
             data=linkedin_img,
