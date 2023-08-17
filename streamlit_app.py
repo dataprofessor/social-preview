@@ -35,15 +35,17 @@ if uploaded_file is not None:
   output_buffer = BytesIO()
   cairosvg.svg2png(bytestring=uploaded_file.getvalue(), write_to=output_buffer, scale=5)
 
-  with open('converted.png', 'wb') as f:
+  with open("converted.png", "wb") as f:
     f.write(output_buffer.getvalue())
 
   linkedin_img = img2linkedin("converted.png")
-  st.image(linkedin_img, use_column_width=True)
-
-  btn = st.download_button(
-              label="Download image",
-              data=linkedin_img,
-              file_name=f"{uploaded_file.name.rstrip('.svg')}_linkedin.png",
-              mime="image/png"
-            )
+  linkedin_img.save("linkedin.png")
+  
+  with open("linkedin.png", "rb") as file:
+    st.image(file, use_column_width=True)
+    btn = st.download_button(
+                label="Download image",
+                data=file,
+                file_name=f"{uploaded_file.name.rstrip('.svg')}_linkedin.png",
+                mime="image/png"
+              )
