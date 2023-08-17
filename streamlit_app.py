@@ -39,9 +39,9 @@ if uploaded_file is not None:
   #cairosvg.svg2png(url=svg_content, write_to='generated-image.png', scale=5)
   #linkedin_img = img2linkedin("generated-image.png")
   #st.image(linkedin_img)
-  #btn = st.download_button(
-  #          label="Download image",
-  #          data=linkedin_img,
-  #          file_name=f"{uploaded_file.name}_linkedin.png",
-  #          mime="image/png"
-  #        )
+  btn = st.download_button(
+            label="Download image",
+            data=output_buffer.getvalue(),
+            file_name=f"{uploaded_file.name}_linkedin.png",
+            mime="image/png"
+          )
