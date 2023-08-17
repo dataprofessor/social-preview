@@ -29,7 +29,7 @@ def img2linkedin(image_input):
 uploaded_file = st.file_uploader("Choose an Image file", type='svg')
 
 if uploaded_file:
-  cairosvg.svg2png(url='generated-image.svg', write_to='generated-image.png', scale=5)
+  cairosvg.svg2png(url=uploaded_file.name, write_to='generated-image.png', scale=5)
   linkedin_img = img2linkedin("generated-image.png")
   st.image(linkedin_img)
   btn = st.download_button(
