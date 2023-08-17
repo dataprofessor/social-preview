@@ -1,3 +1,4 @@
 pkg-config
-cairo
+libcairo2
 libcairo2-dev
+python3-cairosvg
