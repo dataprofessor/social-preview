@@ -1,5 +1,6 @@
 import streamlit as st
 import cairosvg
+from io import StringIO
 from PIL import Image
 
 st.set_page_config(page_title="🏞️ Social Preview Image Generator")
