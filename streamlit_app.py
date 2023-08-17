@@ -9,7 +9,7 @@ st.write('An app to generate social preview images for the [Streamlit blog](http
 
 # Convert to LinkedIn social preview image
 def img2linkedin(image_input):
-  img = Image.open(image_input)
+  #img = Image.open(image_input)
 
   # Create LinkedIn social preview image (1.91:1 aspect ratio)
   original_height = img.size[1]
