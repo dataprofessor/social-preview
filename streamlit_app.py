@@ -30,7 +30,7 @@ def img2linkedin(image_input):
 uploaded_file = st.file_uploader("Choose an Image file", type='svg')
 
 if uploaded_file:
-  b64 = base64.b64encode(uploaded_file.encode('utf-8')).decode("utf-8")
+  b64 = base64.b64encode(uploaded_file.getvalue().encode('utf-8')).decode("utf-8")
   html = r'<img src="data:image/svg+xml;base64,%s"/>' % b64
   
   cairosvg.svg2png(url=html, write_to='generated-image.png', scale=5)
