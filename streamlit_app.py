@@ -35,7 +35,8 @@ if uploaded_file is not None:
   output_buffer = BytesIO()
   cairosvg.svg2png(bytestring=uploaded_file.getvalue(), write_to=output_buffer, scale=5)
 
-  output_buffer.getvalue().save("converted.png")
+  with open('converted.png', 'wb') as f:
+    f.write(output_buffer.getvalue())
 
   linkedin_img = img2linkedin("converted.png")
   st.image(linkedin_img, use_column_width=True)
